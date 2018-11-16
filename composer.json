@@ -1,0 +1,9 @@
+{
+  "name": "drupal/d8cache",
+  "type": "drupal-module",
+  "description": "D8 Cache Test Module",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "require": { }
+}

@@ -1,0 +1,7 @@
+name: 'd8cache'
+type: module
+description: 'D8 Cache Test Module'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - system
