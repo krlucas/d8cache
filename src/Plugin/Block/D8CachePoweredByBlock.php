@@ -3,6 +3,7 @@
 namespace Drupal\d8cache\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
@@ -23,6 +24,7 @@ class D8CachePoweredByBlock extends BlockBase implements ContainerFactoryPluginI
    * @var \Drupal\Core\Session\AccountProxyInterface
    */
   protected $currentUser;
+
   /**
    * Constructs a new Ned2018PoweredByBlock object.
    *
@@ -42,6 +44,7 @@ class D8CachePoweredByBlock extends BlockBase implements ContainerFactoryPluginI
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->currentUser = $current_user;
   }
+
   /**
    * {@inheritdoc}
    */
@@ -53,6 +56,7 @@ class D8CachePoweredByBlock extends BlockBase implements ContainerFactoryPluginI
       $container->get('current_user')
     );
   }
+
   /**
    * {@inheritdoc}
    */
@@ -63,7 +67,15 @@ class D8CachePoweredByBlock extends BlockBase implements ContainerFactoryPluginI
           '@current_user' => $this->currentUser->getDisplayName(),
         ]) . '</span>'
     ];
+    // $build['#cache']['contexts'][] = 'user';
     return $build;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts() {
+    return Cache::mergeContexts(parent::getCacheContexts(), ['user']);
   }
 
 }
