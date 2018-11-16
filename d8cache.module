@@ -1,0 +1,13 @@
+<?php
+
+use Drupal\Core\Cache\Cache;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_node_presave().
+ */
+function d8cache_node_presave(NodeInterface $node) {
+  if ($node->getType() === 'recipe') {
+     Cache::invalidateTags(['recipes_' . $node->field_difficulty->value]);
+  }
+}
