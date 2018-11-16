@@ -23,6 +23,7 @@ class D8CachePoweredByBlock extends BlockBase implements ContainerFactoryPluginI
    * @var \Drupal\Core\Session\AccountProxyInterface
    */
   protected $currentUser;
+
   /**
    * Constructs a new Ned2018PoweredByBlock object.
    *
@@ -42,6 +43,7 @@ class D8CachePoweredByBlock extends BlockBase implements ContainerFactoryPluginI
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->currentUser = $current_user;
   }
+
   /**
    * {@inheritdoc}
    */
@@ -53,6 +55,7 @@ class D8CachePoweredByBlock extends BlockBase implements ContainerFactoryPluginI
       $container->get('current_user')
     );
   }
+
   /**
    * {@inheritdoc}
    */
